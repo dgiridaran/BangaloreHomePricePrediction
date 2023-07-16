@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Predict Home Price{% endblock %}
+{% block content %}
+<form method="POST">
+<h3 align="center">Predict Bangalore Home Price</h3>
+    <dic class="form-group">
+        <label for="location">Location</label>
+        <select id="location" name="location" class="form-control" >
+            {% for location in location_dropdown %}
+            <option value={{location}}>{{location}}</option>
+            {% endfor %}
+        </select>
+        <!-- <input type="text" class="form-control" id="location", name="location" placeholder="Enter location"> -->
+    </dic>
+    <br>
+    <dic class="form-group">
+        <label for="sqft">Square Feet</label>
+        {% if sqft %}
+        <input type="number" class="form-control" id="sqft", name="sqft" placeholder={{sqft}}>
+        {% else %}
+        <input type="number" class="form-control" id="sqft", name="sqft" placeholder="Enter square feet">
+        {% endif %}
+    </dic>
+    <br>
+    <dic class="form-group">
+        <label for="sqft">No of BHK</label>
+        {% if bhk %}
+        <input type="number" class="form-control" id="bhk", name="bhk" placeholder={{bhk}}>
+        {% else %}
+        <input type="number" class="form-control" id="bhk", name="bhk" placeholder="Enter number of BHK">
+        {% endif %}
+    </dic>
+    <br>
+    <dic class="form-group">
+        <label for="bath">No of Bathrooms</label>
+        {% if bath %}
+        <input type="number" class="form-control" id="bath", name="bath" placeholder={{bath}}>
+        {%else%}
+        <input type="number" class="form-control" id="bath", name="bath" placeholder="Enter no of Bathrooms">
+        {% endif %}
+    </dic>
+    <br>
+    <button type="submit" class="btn btn-primary">Predict</button>
+    <br>
+    <br>
+    <div class="predicted-price">
+        {% if price %}
+        <h3>predicted Price: {{price + " lakhs"}}</h3>
+        {% else %}
+        <h3>0</h3>
+        {% endif %}
+    </div>
+</form>
+{% endblock %}
